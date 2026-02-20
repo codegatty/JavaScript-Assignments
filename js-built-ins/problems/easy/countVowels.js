@@ -24,9 +24,13 @@
   Once you've implemented the logic, test your code by running
   - `npm run test-countVowels`
 */
-
 function countVowels(str) {
-  // Your code here
+ return str.toLowerCase().split('').reduce((acc, ele) => {
+    if (/[aeiou]/i.test(ele)) {
+      acc++;
+    }
+    return acc;
+  }, 0)
 }
 
 module.exports = { countVowels };

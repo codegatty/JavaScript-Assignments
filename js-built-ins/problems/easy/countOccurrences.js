@@ -20,8 +20,16 @@
 
 
 function countOccurrences(arr) {
-  // Your code here
+  return arr.reduce((acc, ele) => {
+    if (acc[ele]) {
+      acc[ele]++;
+    } else {
+      acc[ele] = 1;
+    }
+    return acc;
+  }, {});
 }
+
 
 module.exports = countOccurrences;
 
