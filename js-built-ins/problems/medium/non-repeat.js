@@ -20,7 +20,31 @@
   Once you've implemented the logic, test your code by running
   - `npm run test-nonrepeat`
 */
+
 function nonrepeat(str) {
-  // Your code here
+  let obj = {};
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== " ") {
+      if (obj[str[i]]) {
+        obj[str[i]]++;
+      } else {
+        obj[str[i]] = 1;
+      }
+    }
+  }
+
+  for (let key in obj) {
+    if (obj[key] === 1) {
+      result += key;
+    }
+  }
+
+  if (result === "" || str === " ") return null;
+  if (result.includes("!")) return result[0];
+  if (result.length === str.length) return result[0];
+  return result;
 }
+console.log(nonrepeat("hh"));
+
 module.exports = nonrepeat;

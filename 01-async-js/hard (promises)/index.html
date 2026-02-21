@@ -9,16 +9,22 @@
 
 <body>
     <script>
-        // const start = Date.now();
-        // const mill = 10000
-        // while ((Date.now() - start) <= mill);
+        function reverseInteger(num) {
+            const sign = Math.sign(num);
+            num = Math.abs(num);
 
-        const start = Date.now();
-        const mill = 1000
-        while ((start.getMilliseconds() - start.getMilliseconds()) <= mill) {
-            //console.log(new Date().getMilliseconds()-start.getMilliseconds())
+            let rev = 0;
+
+            while (num > 0) {
+                rev = rev * 10 + (num % 10);
+                num = Math.trunc(num / 10); // safer than floor
+            }
+
+            return rev * sign;
         }
 
+        console.log(reverseInteger(1234));   // 4321
+        console.log(reverseInteger(-1234));  // -4321
 
         console.log("completed")
     </script>
