@@ -48,22 +48,19 @@
 // ];
 
 function calculateTotalSpentByCategory(transactions) {
-  const finder = [];
-  const result = [];
-  transactions.forEach((element) => {
-    const category = element.category;
-    if (finder.includes(category)) {
-      const index = finder.indexOf(category);
-      const oldData = result[index];
-      const newSpentTotal = oldData.totalSpent + element.price;
-      result[index] = { category: category, totalSpent: newSpentTotal };
-    } else {
-      finder.push(element.category);
-      result.push({ category: category, totalSpent: element.price });
+  const categoryMap = {};
+
+  transactions.forEach(({ category, price }) => {
+    if (!categoryMap[category]) {
+      categoryMap[category] = 0;
     }
+    categoryMap[category] += price;
   });
 
-  return result;
+  return Object.entries(categoryMap).map(([category, totalSpent]) => ({
+    category,
+    totalSpent
+  }));
 }
 
 //console.log(calculateTotalSpentByCategory(transactions));
